@@ -5,7 +5,7 @@ sh postprocess.sh learning_rate/test.txt learning_rate/test.txt en
 cat learning_rate/test.txt | sacrebleu baseline/raw_data/test.en
 
 # embed dim
-python train.py --data baseline/prepared_data --cuda True --encoder-embed-dim 128 --decoder-embed-dim 128
+python train.py --data baseline/prepared_data --cuda True --save-dir embed_dim --encoder-embed-dim 128 --decoder-embed-dim 128
 python translate.py --data baseline/prepared_data --checkpoint-path embed_dim/checkpoint_best.pt --output embed_dim/test.txt --cuda True
 sh postprocess.sh embed_dim/test.txt embed_dim/test.txt en
 cat embed_dim/test.txt | sacrebleu baseline/raw_data/test.en

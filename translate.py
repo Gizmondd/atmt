@@ -67,6 +67,8 @@ def main(args):
     # Iterate over the test set
     all_hyps = {}
     for i, sample in enumerate(progress_bar):
+        if args.cuda:
+            sample = utils.move_to_cuda(sample)
         with torch.no_grad():
             # Compute the encoder output
             encoder_out = model.encoder(sample['src_tokens'], sample['src_lengths'])
@@ -87,6 +89,8 @@ def main(args):
             prev_words = torch.cat([go_slice, next_words], dim=1)
 
         # Segment into sentences
+        if args.cuda:
+            next_words = next_words.cpu()
         decoded_batch = next_words.numpy()
         output_sentences = [decoded_batch[row, :] for row in range(decoded_batch.shape[0])]
         assert(len(output_sentences) == len(sample['id'].data))

@@ -12,6 +12,7 @@ from seq2seq.data.dictionary import Dictionary
 from seq2seq.data.dataset import Seq2SeqDataset, BatchSampler
 from seq2seq.beam import BeamSearch, BeamSearchNode
 
+from queue import PriorityQueue
 
 def get_args():
     """ Defines generation-specific hyper-parameters. """
@@ -31,6 +32,7 @@ def get_args():
     parser.add_argument('--beam-size', default=5, type=int, help='number of hypotheses expanded in beam search')
     parser.add_argument('--alpha', default=0, type=float, help='Length normalization softener')
     parser.add_argument('--gamma', default=0, type=float, help='Diversity parameter')
+    parser.add_argument('--nbest', default=1, type=int, help="How many of the best result are printed")
 
     return parser.parse_args()
 
@@ -72,6 +74,7 @@ def main(args):
 
     # Iterate over the test set
     all_hyps = {}
+    all_sents = []
     for i, sample in enumerate(progress_bar):
 
         # Create a beam search object or every input sentence in batch
@@ -147,6 +150,7 @@ def main(args):
 
             # Create number of beam_size next nodes for every current node
             for i in range(log_probs.shape[0]):
+                penalty_queue = PriorityQueue()
                 for j in range(args.beam_size):
 
                     # see __QUESTION 2
@@ -170,18 +174,26 @@ def main(args):
                         node = BeamSearchNode(search, node.emb, node.lstm_out, node.final_hidden,
                                               node.final_cell, node.mask, torch.cat((prev_words[i][0].view([1]),
                                               next_word)), node.logp, node.length, args.alpha)
-                        search.add_final(-node.eval(), node)
+                        penalty_queue.put((-node.eval(), node))
 
                     # Add the node to current nodes for next iteration
                     else:
                         node = BeamSearchNode(search, node.emb, node.lstm_out, node.final_hidden,
                                               node.final_cell, node.mask, torch.cat((prev_words[i][0].view([1]),
                                               next_word)), node.logp + log_p, node.length + 1, args.alpha)
-                        search.add(-node.eval(), node)
+                        penalty_queue.put((-node.eval(), node))
+                
+                # Apply diversity gamma to new nodes and add them to search
+                penalty = 0
+                while penalty_queue.qsize() > 0:
+                    penalty += args.gamma
+                    current_node = penalty_queue.get()
+                    current_node[1].logp -= penalty
+                    if current_node[1].sequence[-1] == tgt_dict.eos_idx:
+                        search.add_final(-current_node[1].eval(), current_node[1])
+                    else:
+                        search.add(-current_node[1].eval(), current_node[1])
 
-            # Add diversity gamma to all new Nodes
-            for search in searches:
-                search.apply_diversity(args.gamma)
 
             # __QUESTION 5: What happens internally when we prune our beams?
             # How do we know we always maintain the best sequences?
@@ -189,7 +201,7 @@ def main(args):
                 search.prune()
         
         # Segment into sentences
-        best_sents = torch.stack([search.get_best()[1].sequence[1:] for search in searches])
+        best_sents = torch.stack([sent[1].sequence[1:] for sent in search.get_best(args.nbest) for search in searches])
         decoded_batch = best_sents.numpy()
 
         output_sentences = [decoded_batch[row, :] for row in range(decoded_batch.shape[0])]
@@ -207,15 +219,23 @@ def main(args):
         # Convert arrays of indices into strings of words
         output_sentences = [tgt_dict.string(sent) for sent in output_sentences]
 
-        for ii, sent in enumerate(output_sentences):
-            all_hyps[int(sample['id'].data[ii])] = sent
+
+        if (args.nbest > 1):
+            all_sents.extend(output_sentences)
+        else:
+            for ii, sent in enumerate(output_sentences):
+                all_hyps[int(sample['id'].data[ii])] = sent
 
 
     # Write to file
     if args.output is not None:
         with open(args.output, 'w') as out_file:
-            for sent_id in range(len(all_hyps.keys())):
-                out_file.write(all_hyps[sent_id] + '\n')
+            if (args.nbest > 1):
+                for sent in all_sents:
+                    out_file.write(sent + '\n')
+            else:
+                for sent_id in range(len(all_hyps.keys())):
+                    out_file.write(all_hyps[sent_id] + '\n')
 
 
 if __name__ == '__main__':

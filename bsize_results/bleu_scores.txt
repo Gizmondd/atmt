@@ -1,30 +1,30 @@
 test with beam size 1
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 18.2 48.8/22.4/12.8/7.8 (BP = 1.000 ratio = 1.067 hyp_len = 4288 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.1 53.6/25.2/14.7/9.2 (BP = 0.973 ratio = 0.974 hyp_len = 3911 ref_len = 4017)
 test with beam size 2
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.6 51.8/24.8/14.7/9.4 (BP = 1.000 ratio = 1.004 hyp_len = 4035 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.3 56.2/27.6/16.6/10.9 (BP = 0.928 ratio = 0.930 hyp_len = 3737 ref_len = 4017)
 test with beam size 3
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.9 53.3/25.8/15.6/10.1 (BP = 0.968 ratio = 0.968 hyp_len = 3890 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.5 57.3/28.4/17.4/11.5 (BP = 0.900 ratio = 0.905 hyp_len = 3634 ref_len = 4017)
 test with beam size 4
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.3 54.5/27.0/16.4/10.6 (BP = 0.949 ratio = 0.951 hyp_len = 3819 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.9 58.2/29.3/18.1/11.9 (BP = 0.888 ratio = 0.894 hyp_len = 3592 ref_len = 4017)
 test with beam size 5
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.1 54.8/27.1/16.5/10.8 (BP = 0.928 ratio = 0.931 hyp_len = 3738 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 58.2/29.3/18.2/12.2 (BP = 0.873 ratio = 0.880 hyp_len = 3536 ref_len = 4017)
 test with beam size 6
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.1 55.3/27.3/16.8/11.0 (BP = 0.917 ratio = 0.920 hyp_len = 3696 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 58.8/29.6/18.4/12.4 (BP = 0.860 ratio = 0.869 hyp_len = 3492 ref_len = 4017)
 test with beam size 7
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.1 55.8/27.5/17.2/11.4 (BP = 0.902 ratio = 0.906 hyp_len = 3640 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 59.2/29.8/18.8/12.7 (BP = 0.849 ratio = 0.859 hyp_len = 3452 ref_len = 4017)
 test with beam size 8
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.9 55.6/27.5/17.1/11.4 (BP = 0.894 ratio = 0.899 hyp_len = 3613 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.4 58.9/29.7/18.8/12.7 (BP = 0.842 ratio = 0.853 hyp_len = 3428 ref_len = 4017)
 test with beam size 9
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.7 56.0/27.7/17.2/11.5 (BP = 0.878 ratio = 0.885 hyp_len = 3556 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.2 59.4/30.0/18.9/12.9 (BP = 0.826 ratio = 0.840 hyp_len = 3374 ref_len = 4017)
 test with beam size 10
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.7 56.2/27.8/17.3/11.6 (BP = 0.874 ratio = 0.882 hyp_len = 3541 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.2 59.6/30.1/19.0/13.1 (BP = 0.821 ratio = 0.835 hyp_len = 3356 ref_len = 4017)
 test with beam size 11
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.6 56.4/28.0/17.4/11.8 (BP = 0.863 ratio = 0.872 hyp_len = 3502 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.1 59.6/30.2/19.0/13.1 (BP = 0.814 ratio = 0.830 hyp_len = 3333 ref_len = 4017)
 test with beam size 12
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.5 56.8/28.3/17.6/11.9 (BP = 0.852 ratio = 0.862 hyp_len = 3463 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.0 59.9/30.5/19.2/13.2 (BP = 0.804 ratio = 0.821 hyp_len = 3299 ref_len = 4017)
 test with beam size 13
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.5 57.0/28.4/17.8/12.0 (BP = 0.847 ratio = 0.858 hyp_len = 3445 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.0 59.9/30.5/19.3/13.3 (BP = 0.802 ratio = 0.819 hyp_len = 3290 ref_len = 4017)
 test with beam size 14
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.5 57.2/28.7/17.9/12.2 (BP = 0.840 ratio = 0.852 hyp_len = 3421 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.9 59.9/30.5/19.4/13.4 (BP = 0.798 ratio = 0.816 hyp_len = 3278 ref_len = 4017)
 test with beam size 15
-BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.5 57.3/28.9/18.1/12.3 (BP = 0.832 ratio = 0.845 hyp_len = 3393 ref_len = 4017)
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.9 59.9/30.7/19.5/13.5 (BP = 0.792 ratio = 0.811 hyp_len = 3257 ref_len = 4017)

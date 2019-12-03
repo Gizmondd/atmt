@@ -29,6 +29,7 @@ def get_args():
 
     # Add beam search arguments
     parser.add_argument('--beam-size', default=5, type=int, help='number of hypotheses expanded in beam search')
+    parser.add_argument('--alpha', default=1, type=float, help='Length normalization softener')
 
     return parser.parse_args()
 
@@ -111,9 +112,9 @@ def main(args):
                 except TypeError:
                     mask = None
 
-                # __QUESTION 3: What happens internally when we add a new beam search node?
+                # __QUESTION 3: What happens internally when we add a new search node?
                 node = BeamSearchNode(searches[i], emb, lstm_out, final_hidden, final_cell,
-                                      mask, torch.cat((go_slice[i], next_word)), log_p, 1)
+                                      mask, torch.cat((go_slice[i], next_word)), log_p, 1, args.alpha)
                 searches[i].add(-node.eval(), node)
 
         # Start generating further tokens until max sentence length reached
@@ -167,21 +168,21 @@ def main(args):
                     if next_word[-1 ] == tgt_dict.eos_idx:
                         node = BeamSearchNode(search, node.emb, node.lstm_out, node.final_hidden,
                                               node.final_cell, node.mask, torch.cat((prev_words[i][0].view([1]),
-                                              next_word)), node.logp, node.length)
+                                              next_word)), node.logp, node.length, args.alpha)
                         search.add_final(-node.eval(), node)
 
                     # Add the node to current nodes for next iteration
                     else:
                         node = BeamSearchNode(search, node.emb, node.lstm_out, node.final_hidden,
                                               node.final_cell, node.mask, torch.cat((prev_words[i][0].view([1]),
-                                              next_word)), node.logp + log_p, node.length + 1)
+                                              next_word)), node.logp + log_p, node.length + 1, args.alpha)
                         search.add(-node.eval(), node)
 
             # __QUESTION 5: What happens internally when we prune our beams?
             # How do we know we always maintain the best sequences?
             for search in searches:
                 search.prune()
-
+        
         # Segment into sentences
         best_sents = torch.stack([search.get_best()[1].sequence[1:] for search in searches])
         decoded_batch = best_sents.numpy()

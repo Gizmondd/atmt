@@ -64,6 +64,17 @@ class BeamSearch(object):
             nodes.put(node)
         self.nodes = nodes
 
+    def apply_diversity(self, gamma):
+        """ Applies diversity to current nodes"""
+        nodes = PriorityQueue()
+        penalty = gamma
+        while not self.nodes.empty() and nodes.qsize() < self.beam_size:
+            node = self.nodes.get()
+            node[2].logp = node[2].logp - penalty
+            nodes.put((node[0], node[1], node[2]))
+            penalty += gamma
+        self.nodes = nodes
+
 
 class BeamSearchNode(object):
     """ Defines a search node and stores values important for computation of beam search path"""

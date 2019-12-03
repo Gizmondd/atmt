@@ -29,7 +29,8 @@ def get_args():
 
     # Add beam search arguments
     parser.add_argument('--beam-size', default=5, type=int, help='number of hypotheses expanded in beam search')
-    parser.add_argument('--alpha', default=1, type=float, help='Length normalization softener')
+    parser.add_argument('--alpha', default=0, type=float, help='Length normalization softener')
+    parser.add_argument('--gamma', default=0, type=float, help='Diversity parameter')
 
     return parser.parse_args()
 
@@ -177,6 +178,10 @@ def main(args):
                                               node.final_cell, node.mask, torch.cat((prev_words[i][0].view([1]),
                                               next_word)), node.logp + log_p, node.length + 1, args.alpha)
                         search.add(-node.eval(), node)
+
+            # Add diversity gamma to all new Nodes
+            for search in searches:
+                search.apply_diversity(args.gamma)
 
             # __QUESTION 5: What happens internally when we prune our beams?
             # How do we know we always maintain the best sequences?

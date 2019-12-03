@@ -1,0 +1,23 @@
+test with alpha value 0
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.3 54.5/27.0/16.4/10.6 (BP = 0.949 ratio = 0.951 hyp_len = 3819 ref_len = 4017)
+test with alpha value 0.1
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.4 54.5/26.9/16.3/10.6 (BP = 0.953 ratio = 0.954 hyp_len = 3832 ref_len = 4017)
+test with alpha value 0.2
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 54.3/26.9/16.4/10.8 (BP = 0.959 ratio = 0.959 hyp_len = 3854 ref_len = 4017)
+test with alpha value 0.3
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 54.2/26.7/16.3/10.7 (BP = 0.961 ratio = 0.962 hyp_len = 3864 ref_len = 4017)
+test with alpha value 0.4
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 53.9/26.6/16.2/10.6 (BP = 0.970 ratio = 0.970 hyp_len = 3897 ref_len = 4017)
+test with alpha value 0.5
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 53.7/26.4/16.1/10.5 (BP = 0.977 ratio = 0.977 hyp_len = 3924 ref_len = 4017)
+test with alpha value 0.6
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.6 53.3/26.3/16.0/10.4 (BP = 0.984 ratio = 0.984 hyp_len = 3954 ref_len = 4017)
+test with alpha value 0.7
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.5 53.1/26.0/15.8/10.2 (BP = 0.988 ratio = 0.989 hyp_len = 3971 ref_len = 4017)
+test with alpha value 0.8
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.5 52.5/25.8/15.6/10.1 (BP = 1.000 ratio = 1.003 hyp_len = 4028 ref_len = 4017)
+test with alpha value 0.9
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 21.2 51.9/25.6/15.5/9.9 (BP = 1.000 ratio = 1.020 hyp_len = 4097 ref_len = 4017)
+test with alpha value 1
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.2.21 = 20.8 51.2/25.1/15.1/9.6 (BP = 1.000 ratio = 1.038 hyp_len = 4168 ref_len = 4017)
+test with alpha value 0
